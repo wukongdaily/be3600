@@ -5,8 +5,10 @@ Make your GL-BE3600 look like iStoreOS in one step
 ```bash
 sh -c "$(curl -fsSL https://cafe.cpolar.top/wkdaily/be3600/raw/branch/master/be3600.sh)"
 ```
-
-
+### 不刷机指南
+[![YouTube](https://img.shields.io/badge/YouTube-123456?logo=youtube&labelColor=ff0000)](https://youtu.be/TImSMeurR84)
+- 【4.7.1 在32位系统下演示 】https://youtu.be/TImSMeurR84
+- 【4.7.2 在64位系统下演示 】预留
 
 
 
