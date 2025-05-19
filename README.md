@@ -10,8 +10,8 @@ Make your GL-BE3600 look like iStoreOS in one step<br>
 - ✅ Tips 实测在iStore——【维护】里可将系统完整备份和恢复
 - ✅ 脚本运行后各类ssh工具就支持文件上传下载了 譬如finalshell/MobaXterm
 - ✅ 该脚本仅在应用层安装app 并不影响原厂系统功能和界面
+- ✅ 自定义风扇启动的温度
 - 未来可能支持待发布GL.iNET Flint 3 (GL-BE9300)  理论上目前也可兼容
-- 风扇温度调整（待开发）
 
 
 > 其他机型:[GL-MT3000/6000/2500 在这里](https://github.com/wukongdaily/gl-inet-onescript/)
