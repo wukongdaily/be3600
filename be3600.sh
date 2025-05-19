@@ -43,9 +43,9 @@ install_istore_os_style() {
 	UPDATED_CONTENT=$(echo "$CONTENT" | sed "s/DISTRIB_DESCRIPTION='[^']*'/DISTRIB_DESCRIPTION='$NEW_DESCRIPTION'/")
 	echo "$UPDATED_CONTENT" >$FILE_PATH
 }
-# 安装iStore 
+# 安装iStore
 do_istore() {
-	echo "do_istore method==================>"
+	echo "do_istore 64bit ==================>"
 	opkg update
 	# 定义目标 URL 和本地目录
 	URL="https://repo.istoreos.com/repo/all/store/"
@@ -63,8 +63,63 @@ do_istore() {
 	# 安装所有下载的 .ipk 包
 	opkg install ./*.ipk
 
+	#覆盖 bin/is-opkg
+	wget -O /bin/is-opkg https://cafe.cpolar.top/wkdaily/be3600/raw/branch/master/64bit/is-opkg.sh
+	chmod +x /bin/is-opkg
+
+	#添加istore软件源
+	wget -O /etc/opkg/customfeeds.conf https://cafe.cpolar.top/wkdaily/be3600/raw/branch/master/64bit/customfeeds.conf
+
+	#调整a53架构优先级
+	add_arch_64bit
+
 }
 
+# 首页和网络向导
+do_quickstart() {
+	download_lib_quickstart
+	download_luci_quickstart
+	opkg install /tmp/ipk_downloads/*.ipk
+	hide_homepage_format_button
+	green "首页风格安装完毕！请使用8080端口访问luci界面：http://192.168.8.1:8080"
+	green "作者更多动态务必收藏：https://tvhelper.cpolar.top/"
+}
+
+download_luci_quickstart() {
+	# 目标目录
+	REPO_URL="https://repo.istoreos.com/repo/all/nas_luci/"
+	DOWNLOAD_DIR="/tmp/ipk_downloads"
+
+	# 创建下载目录
+	mkdir -p "$DOWNLOAD_DIR"
+
+	# 获取目录索引并筛选 quickstart ipk 链接
+	wget -qO- "$REPO_URL" | grep -oE 'href="[^"]*quickstart[^"]*\.ipk"' |
+		sed 's/href="//;s/"//' | while read -r FILE; do
+		echo "📦 正在下载: $FILE"
+		wget -q -P "$DOWNLOAD_DIR" "$REPO_URL$FILE"
+	done
+
+	echo "✅ 所有 quickstart 相关 IPK 文件已下载到: $DOWNLOAD_DIR"
+}
+
+download_lib_quickstart() {
+	# 目标目录
+	REPO_URL="https://repo.istoreos.com/repo/aarch64_cortex-a53/nas/"
+	DOWNLOAD_DIR="/tmp/ipk_downloads"
+
+	# 创建下载目录
+	mkdir -p "$DOWNLOAD_DIR"
+
+	# 获取目录索引并筛选 quickstart ipk 链接
+	wget -qO- "$REPO_URL" | grep -oE 'href="[^"]*quickstart[^"]*\.ipk"' |
+		sed 's/href="//;s/"//' | while read -r FILE; do
+		echo "📦 正在下载: $FILE"
+		wget -q -P "$DOWNLOAD_DIR" "$REPO_URL$FILE"
+	done
+
+	echo "✅ 所有 quickstart 相关 IPK 文件已下载到: $DOWNLOAD_DIR"
+}
 
 # 判断系统是否为iStoreOS
 is_iStoreOS() {
@@ -152,7 +207,6 @@ get_router_hostname() {
 	echo "$hostname 路由器"
 }
 
-
 # 安装体积非常小的文件传输软件 默认上传位置/tmp/upload/
 do_install_filetransfer() {
 	mkdir -p /tmp/luci-app-filetransfer/
@@ -188,28 +242,57 @@ do_install_argon_skin() {
 		uci set luci.main.mediaurlbase='/luci-static/argon'
 		uci set luci.main.lang='zh_cn'
 		uci commit
+		sed -i 's/value="<%:Login%>"/value="登录"/' /usr/lib/lua/luci/view/themes/argon/sysauth.htm
 		echo "重新登录web页面后, 查看新主题 "
 	else
 		echo "argon主题 安装失败! 建议再执行一次!再给我一个机会!事不过三!"
 	fi
 }
 
+recovery() {
+	echo "⚠️ 警告：此操作将恢复出厂设置，所有配置将被清除！"
+	echo "⚠️ 请确保已备份必要数据。"
+	read -p "是否确定执行恢复出厂设置？(yes/[no]): " confirm
 
-firstboot() {
-    echo "⚠️ 警告：此操作将恢复出厂设置，所有配置将被清除！"
-    echo "⚠️ 请确保已备份必要数据。"
-    read -p "是否确定执行恢复出厂设置？(yes/[no]): " confirm
-
-    if [ "$confirm" = "yes" ]; then
-        echo "正在执行恢复出厂设置..."
-        firstboot -y
-        echo "操作完成，正在重启设备..."
-        reboot
-    else
-        echo "操作已取消。"
-    fi
+	if [ "$confirm" = "yes" ]; then
+		echo "正在执行恢复出厂设置..."
+		# 安静执行 firstboot，不显示其内部的提示信息
+		firstboot -y >/dev/null 2>&1
+		echo "操作完成，正在重启设备..."
+		reboot
+	else
+		echo "操作已取消。"
+	fi
 }
 
+add_arch_64bit() {
+	if ! wget -O /etc/opkg/arch.conf https://cafe.cpolar.top/wkdaily/be3600/raw/branch/master/64bit/arch.conf; then
+		echo "下载 arch.conf 失败，脚本终止。"
+		exit 1
+	fi
+}
+
+# 防止误操作 隐藏首页的格式化按钮
+hide_homepage_format_button() {
+
+	TARGET="/www/luci-static/quickstart/style.css"
+	MARKER="/* hide quickstart disk button */"
+
+	# 如果没有追加过，就添加
+	if ! grep -q "$MARKER" "$TARGET"; then
+		cat <<EOF >>"$TARGET"
+
+$MARKER
+.value-data button {
+  display: none !important;
+}
+EOF
+		echo "✅ 格式化按钮已隐藏"
+	else
+		echo "⚠️ 无需重复操作"
+	fi
+
+}
 
 while true; do
 	clear
@@ -221,9 +304,17 @@ while true; do
 	echo "*******支持的机型列表***************************************************"
 	green "*******GL-iNet BE-3600********"
 	echo
-	light_magenta " 1. $result"
+	light_magenta " 1. $result (32位)"
 	echo
 	light_magenta " 2. 重置路由器"
+	echo
+	light_magenta " 3. $result (64位)"
+	echo
+	light_magenta " 4. 安装argon紫色主题"
+	echo
+	light_magenta " 5. 单独安装iStore商店"
+	echo
+	light_magenta " 6. 隐藏首页格式化按钮"
 	echo
 	echo " Q. 退出本程序"
 	echo
@@ -238,7 +329,26 @@ while true; do
 		setup_base_init
 		;;
 	2)
-		firstboot
+		recovery
+		;;
+	3)
+		#安装iStore风格
+		install_istore_os_style
+		#基础必备设置
+		setup_base_init
+		#安装iStore商店
+		do_istore
+		#安装首页和网络向导
+		do_quickstart
+		;;
+	4)
+		do_install_argon_skin
+		;;
+	5)
+		do_istore
+		;;
+	6)
+		hide_homepage_format_button
 		;;
 	q | Q)
 		echo "退出"
