@@ -2,7 +2,7 @@
 # be3600 <img alt="Static Badge" src="https://img.shields.io/badge/GL--BE3600-0?style=flat-square&logoColor=8A2BE2&label=%E5%9E%8B%E5%8F%B7&labelColor=000000&color=2828FF"> 
 Make your GL-BE3600 look like iStoreOS in one step<br>
 - ✅ 一键iStoreOS风格化([32位](https://youtu.be/TImSMeurR84)和64位)
-- ✅ 目前[64位固件下](https://slink.ltd/https://github.com/wukongdaily/be3600/releases/download/0515/openwrt-be3600-4.7.2-0509-1746794670.bin) 可完美使用iStore商店安装软件
+- ✅ 目前[64位固件下](https://github.com/wukongdaily/be3600/releases/tag/0515) 可完美使用iStore商店安装软件
 - ✅ 同时软件包下支持直接安装app-meta-开头的app
 - ✅ 支持单独安装iStore 方便用户恢复系统备份
 - ✅ 支持单独安装Argon紫色主题
