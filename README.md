@@ -27,7 +27,10 @@ sh -c "$(curl -fsSL https://cafe.cpolar.top/wkdaily/be3600/raw/branch/master/be3
 
 > -----
 
-<img src="https://github.com/user-attachments/assets/f7ea9b22-ef4c-4188-9dc2-a0dae3709e41" width="60%"/><br>
+<img src="https://github.com/user-attachments/assets/e7743217-eb5c-4609-8628-73dbf083d474" width="60%"/><br>
+
+
+
 
 <img src="https://github.com/user-attachments/assets/476552b4-0690-4d13-bd5c-e889d97f06c1" width="70%"/><br>
 
