@@ -13,8 +13,7 @@ Make your GL-BE3600 look like iStoreOS in one step<br>
 - ✅ 自定义风扇启动的温度
 - ✅ 一键启用/关闭 AdguardHome 广告拦截
 - 未来可能支持待发布GL.iNET Flint 3 (GL-BE9300)  理论上目前也可兼容
-## 🆕✨区域切换(CN|US)
-https://github.com/wukongdaily/AreaSwitch
+
 
 > 其他机型:[GL-MT3000/6000/2500 在这里](https://github.com/wukongdaily/gl-inet-onescript/)
 # 一键命令
