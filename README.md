@@ -18,7 +18,7 @@ Make your GL-BE3600 look like iStoreOS in one step<br>
 > 其他机型:[GL-MT3000/6000/2500 在这里](https://github.com/wukongdaily/gl-inet-onescript/)
 # 一键命令
 ```bash
-sh -c "$(curl -fsSL https://cafe.cpolar.top/wkdaily/be3600/raw/branch/master/be3600.sh)"
+sh -c "$(curl -fsSL https://cafe.cpolar.cn/wkdaily/be3600/raw/branch/master/be3600.sh)"
 ```
 
 # 备用脚本
