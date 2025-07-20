@@ -12,6 +12,8 @@ Make your GL-BE3600 look like iStoreOS in one step<br>
 - ✅ 该脚本仅在应用层安装app 并不影响原厂系统功能和界面
 - ✅ 自定义风扇启动的温度
 - ✅ 一键启用/关闭 AdguardHome 广告拦截
+- ✅ 新增`个性化辅助UI插件的安装` 🆕
+ 
 - 未来可能支持待发布GL.iNET Flint 3 (GL-BE9300)  理论上目前也可兼容
 
 
