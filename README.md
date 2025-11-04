@@ -14,7 +14,7 @@ Make your GL-BE3600 look like iStoreOS in one step<br>
 - ✅ 一键启用/关闭 AdguardHome 广告拦截
 - ✅ 新增`个性化辅助UI插件的安装` 🆕
  
-- 未来可能支持待发布GL.iNET Flint 3 (GL-BE9300)  理论上目前也可兼容
+- 未来可能支持待发布GL.iNET Flint 3 (GL-BE9300、BE6500)  理论上目前也可兼容
 
 
 > 其他机型:[GL-MT3000/6000/2500 在这里](https://github.com/wukongdaily/gl-inet-onescript/)
@@ -26,17 +26,11 @@ sh -c "$(curl -fsSL https://mt3000.netlify.app/be3600.sh)"
 
 ### 不刷机方案下的使用指南
 
-- 【4.7.1 在32位系统下演示 】https://youtu.be/TImSMeurR84
 - 【4.7.2 在64位系统下演示 】https://youtu.be/WhtPERoU7PY   和 https://www.bilibili.com/video/BV1J4J3zAEDz<br>
 
-> -----
-
-<img src="https://github.com/user-attachments/assets/e7743217-eb5c-4609-8628-73dbf083d474" width="60%"/><br>
-
-
-
-
-<img src="https://github.com/user-attachments/assets/476552b4-0690-4d13-bd5c-e889d97f06c1" width="70%"/><br>
-
-> -----
 [![赞助我](https://img.shields.io/badge/赞助用爱发电的我-支持作者的项目-orange?logo=github)](https://wkdaily.cpolar.top/01)<br>
+
+### 更新新版iStoreOS风格的首页
+
+<img width="3840" height="4297" alt="FireShot Capture 003 - GL-BE3600 - LuCI -  192 168 8 1" src="https://github.com/user-attachments/assets/7eb5c18f-8e46-4314-8c84-42cffb8a6fff" />
+
