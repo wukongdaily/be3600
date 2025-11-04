@@ -34,3 +34,14 @@ sh -c "$(curl -fsSL https://mt3000.netlify.app/be3600.sh)"
 
 <img width="3840" height="4297" alt="FireShot Capture 003 - GL-BE3600 - LuCI -  192 168 8 1" src="https://github.com/user-attachments/assets/7eb5c18f-8e46-4314-8c84-42cffb8a6fff" />
 
+## ⚠️⚠️⚠️ 软件源注意事项
+luci首页【软件源配置】这个按钮  这个功能是给iStoreOS 用的。<br>
+现在我们的系统是GL原厂系统 不是iStoreOS，如果你点了这按钮 就会把软件源弄乱。<br>
+变成一个错误的软件源地址。各位别点这个按钮。如果不小心点了 你再换回原厂软件源就行 方法如下<br>
+进入luci界面——系统——软件包——OPKG配置，最后一个输入框(`/etc/opkg/distfeeds.conf`)，替换为原厂的软件源
+
+```
+src/gz glinet_core https://fw.gl-inet.cn/releases/qsdk_v12.5/kmod-4.7/be3600-ipq53xx
+src/gz glinet_gli_pub https://fw.gl-inet.cn/releases/qsdk_v12.5/packages-4.x/ipq53xx/be9300/glinet
+src/gz opnwrt_packages https://fw.gl-inet.cn/releases/qsdk_v12.5/packages-4.x/ipq53xx/be9300/packages
+```
