@@ -24,6 +24,13 @@ Make your GL-BE3600 look like iStoreOS in one step<br>
 sh -c "$(curl -fsSL https://mt3000.netlify.app/be3600.sh)"
 ```
 
+#### 新增 BE6500脚本 (GL-BE6500) ❤️
+```bash
+sh -c "$(curl -fsSL https://mt3000.netlify.app/be6500.sh)"
+
+```
+
+
 ### 不刷机方案下的使用指南
 
 - 【4.7.2 在64位系统下演示 】https://youtu.be/WhtPERoU7PY   和 https://www.bilibili.com/video/BV1J4J3zAEDz<br>
